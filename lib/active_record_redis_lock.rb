@@ -1,7 +1,6 @@
 module ActiveRecordRedisLock
-
   def redis_lock(ob, action_name, &blk)
-    klass = ob.class.name == 'Object' ? ob.class.name : "Anon"
+    klass = ob.class.name
     caller = if ob.superclass == ActiveRecord::Base 
       ob.try(:id)
     else
