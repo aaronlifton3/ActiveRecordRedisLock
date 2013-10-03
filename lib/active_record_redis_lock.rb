@@ -1,8 +1,3 @@
-require 'active_record'
-require 'redis'
-require 'redis-lock'
-require 'mlanett-redis-lock'
-
 module ActiveRecordRedisLock
 
   def redis_lock(ob, action_name, &blk)
