@@ -1,3 +1,4 @@
+require 'active_record'
 require 'redis'
 require 'redis-lock'
 require 'mlanett-redis-lock'
