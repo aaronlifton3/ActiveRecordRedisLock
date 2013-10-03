@@ -10,6 +10,8 @@ ActiveRecordRedisLock
     Post.redis_lock(current_user, "create_post") do
       create(title: "Blah", body: "Blah blah blah")
     end
-
+    
 ### Exhibit B.
-    Post.send_query([{joins: "user"}, {joins: {user: "info"}}])
+    Post.redis_lock(current_user, "create_post") do
+      Post.create(title: "Blah", body: "Blah blah blah")
+    end
