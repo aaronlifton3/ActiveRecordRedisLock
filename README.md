@@ -7,6 +7,10 @@ ActiveRecordRedisLock
       title: String
       body: String
 
+    User:
+      id: Int
+      ...
+
     Post.redis_lock(current_user, "create_post") do |p|
       p.create(title: "Blah", body: "Blah blah blah")
     end

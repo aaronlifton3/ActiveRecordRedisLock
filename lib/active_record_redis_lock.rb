@@ -4,8 +4,16 @@ require 'redis-lock'
 require 'mlanett-redis-lock'
 
 module ActiveRecordRedisLock
-  def redis_lock(user, action_name, &blk)
-    Redis.current.lock("#{user.try(:id) || 'anon'}.#{action_name}", life: 1) 
+
+  def redis_lock(ob, action_name, &blk)
+    klass = ob.class.name == 'Object' ? ob.class.name : "Anon"
+    caller = if ob.superclass == ActiveRecord::Base 
+      ob.try(:id)
+    else
+      ob.to_s
+    end
+
+    Redis.current.lock("#{klass}.#{caller || 'anon'}.#{action_name}", life: 1) do 
       blk.call(self)
       # logger.debug("redis_locked called @ #{Time.now.to_i}") if debug
     end
