@@ -29,3 +29,8 @@ ActiveRecordRedisLock
       ]
     end
     render :json => {:saved => profile, :url => employer_portal_job_application_path(new_job_application)}.to_json
+    
+### Usage
+
+    # Gemfile
+    gem 'active_record_redis_lock', git: "git@github.com:aaronlifton/ActiveRecordRedisLock.git"
