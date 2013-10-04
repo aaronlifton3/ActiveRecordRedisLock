@@ -24,7 +24,7 @@ ActiveRecordRedisLock
     # (In Controller)
     profile, new_job_application = redis_lock(current_user, "attach_new") do
       return [
-        ApplicantProfile.create(:phonenumber => params[:phone], :user => user),
+        ApplicantProfile.create(:phone_number => params[:phone], :user => user),
         JobApplication.create(:job => Job.find(params[:job_id]), :user => user)
       ]
     end
