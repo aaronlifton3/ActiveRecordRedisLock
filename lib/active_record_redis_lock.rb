@@ -11,10 +11,11 @@ if defined?(Redis) && Redis.try(:current).respond_to?(:lock)
 
       Redis.current.lock("#{klass}.#{caller || 'anon'}.#{action_name}", options) do 
         blk.call(self)
-        # logger.debug("redis_locked called @ #{Time.now.to_i}") if debug
+        # logger.debug("redis_lock called @ #{Time.now.to_i}") if options[:debug]
       end
     end
   end
+  
+  ActiveRecord::Base.extend(ActiveRecordRedisLock)
 end
 
-ActiveRecord::Base.extend(ActiveRecordRedisLock)
