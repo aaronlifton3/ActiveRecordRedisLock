@@ -34,3 +34,4 @@ ActiveRecordRedisLock
 
     # Gemfile
     gem 'active_record_redis_lock', git: "git@github.com:aaronlifton/ActiveRecordRedisLock.git"
+    
